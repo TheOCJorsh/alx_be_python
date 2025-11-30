@@ -1,17 +1,22 @@
 class BankAccount:
     def __init__(self, initial_balance=0):
-        self.account_balance = initial_balance
+        """Initialize the bank account with an optional starting balance."""
+        self._balance = initial_balance  # Encapsulated attribute
 
     def deposit(self, amount):
+        """Add money to the account."""
         if amount > 0:
-            self.account_balance += amount
+            self._balance += amount
+            return True
+        return False
 
     def withdraw(self, amount):
-        if amount > 0 and amount <= self.account_balance:
-            self.account_balance -= amount
+        """Withdraw money if sufficient balance exists."""
+        if amount > 0 and amount <= self._balance:
+            self._balance -= amount
             return True
-        else:
-            return False
+        return False
 
     def display_balance(self):
-        print(f"Current Balance: ${self.account_balance:.2f}")
+        """Print the current account balance."""
+        print(f"Current balance: ${self._balance:.2f}")
